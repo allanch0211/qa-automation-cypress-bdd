@@ -1,0 +1,540 @@
+{
+  "info": {
+    "_postman_id": "d4cff8e0-8b6b-438f-a2b3-da335770c4ad",
+    "name": "Project  Reqres API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51457992",
+    "_collection_link": "https://go.postman.co/collection/51457992-d4cff8e0-8b6b-438f-a2b3-da335770c4ad?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET User",
+      "item": [
+        {
+          "name": "Listar usuários",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"response possui os campos principais\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('page');\r",
+                  "    pm.expect(response).to.have.property('per_page');\r",
+                  "    pm.expect(response).to.have.property('total');\r",
+                  "    pm.expect(response).to.have.property('total_pages');\r",
+                  "    pm.expect(response).to.have.property('data');\r",
+                  "\r",
+                  "}); \r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "    pm.expect(response.page).to.be.a('number');\r",
+                  "    pm.expect(response.per_page).to.be.a('number');\r",
+                  "    pm.expect(response.total).to.be.a('number');\r",
+                  "    pm.expect(response.total_pages).to.be.a('number');\r",
+                  "    pm.expect(response.data).to.be.an('array');\r",
+                  "\r",
+                  "});    \r",
+                  "\r",
+                  "pm.test(\"Usuários possuem campos obrigatórios\", function () {\r",
+                  "    \r",
+                  "    response.data.forEach(user => { \r",
+                  "\r",
+                  "        pm.expect(user).to.have.property('id');\r",
+                  "        pm.expect(user).to.have.property('email');\r",
+                  "        pm.expect(user).to.have.property('first_name');\r",
+                  "        pm.expect(user).to.have.property('last_name');\r",
+                  "        pm.expect(user).to.have.property('avatar');\r",
+                  "    \r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Usuários possuem informações dos campos obrigatórios\", function () {\r",
+                  "\r",
+                  "        response.data.ForEach(user => {  \r",
+                  "   \r",
+                  "         pm.expect(user.id).to.be.a('number'); \r",
+                  "         pm.expect(user.email).to.be.a('string');\r",
+                  "         pm.expect(user.first_name).to.be.a('string');\r",
+                  "         pm.expect(user.last_name).to.be.a('string');\r",
+                  "         pm.expect(user.avatar).to.be.a('string');\r",
+                  "\r",
+                  "\r",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "x-api-key: pro_327901100d84d40d4d27d7663ecc3ed234fe24475c357a93c0677dcb590802a5",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/users?page=2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar usuário único",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code é 200\", function () {\r",
+                  "\r",
+                  "  pm.response.to.have.status(200);\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "})\r",
+                  "\r",
+                  "const response = pm.response.json(); \r",
+                  "\r",
+                  "pm.test(\"Response possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "pm.expect(response.data).to.have.property('id');\r",
+                  "pm.expect(response.data).to.have.property('email');\r",
+                  "pm.expect(response.data).to.have.property('first_name')\r",
+                  "pm.expect(response.data).to.have.property('last_name')\r",
+                  "pm.expect(response.data).to.have.property('avatar')\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.data.id).to.be.a('number');\r",
+                  "    pm.expect(response.data.email).to.be.a('string');\r",
+                  "    pm.expect(response.data.first_name).to.be.a('string');\r",
+                  "    pm.expect(response.data.last_name).to.be.a('string');\r",
+                  "    pm.expect(response.data.avatar).to.be.a('string');\r",
+                  "\r",
+                  "\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/8",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POST User",
+      "item": [
+        {
+          "name": "Criar usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code é 201\", function () {\r",
+                  "\r",
+                  "  pm.response.to.have.status(201);\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "})\r",
+                  "\r",
+                  "const response = pm.response.json(); \r",
+                  "\r",
+                  "pm.test(\"Response possui campos obrigatórios\", function() { \r",
+                  "\r",
+                  "pm.expect(response).to.have.property(\"name\");\r",
+                  "pm.expect(response).to.have.property(\"job\");\r",
+                  "pm.expect(response).to.have.property(\"id\");\r",
+                  "pm.expect(response).to.have.property(\"createdAt\");\r",
+                  "pm.expect(response).to.have.property(\"_meta\");\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "pm.expect(response.name).to.be.a('string');\r",
+                  "pm.expect(response.job).to.be.a('string');\r",
+                  "pm.expect(response.id).to.be.a('string');\r",
+                  "pm.expect(response.createdAt).to.be.a('string');\r",
+                  "\r",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane\",\r\n  \"job\": \"QA Engineer\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PUT User",
+      "item": [
+        {
+          "name": "Atualizar usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code é 200\", function () {\r",
+                  "\r",
+                  "  pm.response.to.have.status(200);\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "})\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function() { \r",
+                  "\r",
+                  "pm.expect(response).to.have.property('name');\r",
+                  "pm.expect(response).to.have.property('job');\r",
+                  "pm.expect(response).to.have.property('updatedAt');\r",
+                  "\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Tipo de dados corretos\", function() {  \r",
+                  "\r",
+                  "pm.expect(response.name).to.be.a(\"string\")\r",
+                  "pm.expect(response.job).to.be.a(\"string\")\r",
+                  "pm.expect(response.updatedAt).to.be.a(\"string\")\r",
+                  "\r",
+                  "}) "
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Jane Updated\",\r\n  \"job\": \"Senior QA Engineer\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/370",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "370"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PATCH User",
+      "item": [
+        {
+          "name": "Atualização parcial",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code é 200\", function () {\r",
+                  "\r",
+                  "  pm.response.to.have.status(200);\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "})\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {  \r",
+                  "\r",
+                  "pm.expect(response).to.have.property('job')\r",
+                  "pm.expect(response).to.have.property('updatedAt')\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () { \r",
+                  "\r",
+                  "pm.expect(response.job).to.be.a('string')\r",
+                  "pm.expect(response.updatedAt).to.be.a('string')\r",
+                  "\r",
+                  "})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"job\": \"Lead QA Engineer\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/users/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DEL User",
+      "item": [
+        {
+          "name": "Deletar usuário",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status code é 204\", function () {\r",
+                  "\r",
+                  "  pm.response.to.have.status(204);\r",
+                  "\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "})\r",
+                  "\r",
+                  "pm.test(\"Response body vazio\", function () {\r",
+                  "\r",
+                  "pm.expect(pm.response.text()).to.be.empty;\r",
+                  "\r",
+                  "})\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "value",
+                  "value": "{{api_key}}",
+                  "type": "string"
+                },
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/users/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

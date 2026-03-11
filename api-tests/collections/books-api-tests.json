@@ -1,0 +1,776 @@
+{
+  "info": {
+    "_postman_id": "16e75708-bee0-42b0-8e39-98a189097d47",
+    "name": "Project Books API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51457992",
+    "_collection_link": "https://go.postman.co/collection/51457992-16e75708-bee0-42b0-8e39-98a189097d47?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Status",
+      "item": [
+        {
+          "name": "Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json(); \r",
+                  "\r",
+                  "pm.test(\"Response possui campos obrigatórios'\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('status'); \r",
+                  "}); "
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "status"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Autenticação",
+      "item": [
+        {
+          "name": "Token de Acesso",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Response possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property(\"accessToken\"); \r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const randomEmail = \"allan\" + Math.floor(Math.random() * 1000) + \"@gmail.com\"; \r",
+                  "\r",
+                  "pm.environment.set(\"clientEmail\", randomEmail); \r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"clientName\": \"Allan\",\r\n  \"clientEmail\": \"{{clientEmail}}\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api-clients/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api-clients",
+                ""
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Livros",
+      "item": [
+        {
+          "name": "Listar livros",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    response.forEach(books => { \r",
+                  "\r",
+                  "        pm.expect(books).to.have.property(\"id\");\r",
+                  "        pm.expect(books).to.have.property(\"name\");\r",
+                  "        pm.expect(books).to.have.property(\"type\");\r",
+                  "        pm.expect(books).to.have.property(\"available\"); \r",
+                  "        \r",
+                  "        })}); \r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    response.forEach(books => { \r",
+                  "\r",
+                  "pm.expect(books.id).to.be.a(\"number\");\r",
+                  "pm.expect(books.name).to.be.a(\"string\");\r",
+                  "pm.expect(books.type).to.be.a(\"string\");\r",
+                  "pm.expect(books.available).to.be.a(\"boolean\"); \r",
+                  "\r",
+                  "})});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "books"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "fiction",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar livro único",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('id');\r",
+                  "    pm.expect(response).to.have.property('name');\r",
+                  "    pm.expect(response).to.have.property('author');\r",
+                  "    pm.expect(response).to.have.property('type');\r",
+                  "    pm.expect(response).to.have.property('price');\r",
+                  " }); \r",
+                  "\r",
+                  " pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "pm.expect(response.id).to.be.a('number');\r",
+                  "pm.expect(response.name).to.be.a('string');\r",
+                  "pm.expect(response.author).to.be.a('string');\r",
+                  "pm.expect(response.price).to.be.a('number');\r",
+                  "}); "
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/books/2",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "books",
+                "2"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "fiction",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reservas",
+      "item": [
+        {
+          "name": "Listar reservas",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 201\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const  response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    response.forEach(books => { \r",
+                  "\r",
+                  "pm.expect(books).to.have.property(\"id\")\r",
+                  "pm.expect(books).to.have.property(\"bookId\")\r",
+                  "pm.expect(books).to.have.property(\"customerName\")\r",
+                  "pm.expect(books).to.have.property(\"quantity\")\r",
+                  "pm.expect(books).to.have.property(\"timestamp\") \r",
+                  "\r",
+                  "})}) \r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () { \r",
+                  "\r",
+                  "    response.forEach(books => {\r",
+                  "\r",
+                  "pm.expect(books.id).to.be.a('string')\r",
+                  "pm.expect(books.bookId).to.be.a('number')\r",
+                  "pm.expect(books.customerName).to.be.a('string')\r",
+                  "pm.expect(books.quantity).to.be.a('number')\r",
+                  "pm.expect(books.timestamp).to.be.a('number')\r",
+                  "\r",
+                  "})})"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "followAuthorizationHeader": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "fiction",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Consultar uma reserva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "pm.expect(response).to.have.property('id');\r",
+                  "pm.expect(response).to.have.property('bookId');\r",
+                  "pm.expect(response).to.have.property('customerName');\r",
+                  "pm.expect(response).to.have.property('quantity');\r",
+                  "pm.expect(response).to.have.property('timestamp');\r",
+                  "  \r",
+                  "}); \r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "pm.expect(response.id).to.be.a('string');\r",
+                  "pm.expect(response.bookId).to.be.a('number');\r",
+                  "pm.expect(response.customerName).to.be.a('string');\r",
+                  "pm.expect(response.quantity).to.be.a('number');\r",
+                  "pm.expect(response.timestamp).to.be.a('number');\r",
+                  "\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "followAuthorizationHeader": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/orders/:orderId",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                ":orderId"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ],
+              "variable": [
+                {
+                  "key": "orderId",
+                  "value": "93pQqgBzThqvpqDOZoBca"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar reserva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property(\"created\");\r",
+                  "    pm.expect(response).to.have.property(\"orderId\");\r",
+                  "    });\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.created).to.be.a(\"boolean\");\r",
+                  "    pm.expect(response.orderId).to.be.a(\"string\");\r",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {},
+            "followAuthorizationHeader": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"Christian\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar reserva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O corpo da resposta é vazio.\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.text()).to.be.empty;\r",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "followAuthorizationHeader": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customerName\": \"Allanch\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/orders/n8GSIyD3wZaCI-VNJpGb9",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders",
+                "n8GSIyD3wZaCI-VNJpGb9"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "fiction",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Remover reserva",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 204\", function () {\r",
+                  "    pm.response.to.have.status(204);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Campo de resposta vazio\", function () {\r",
+                  "\r",
+                  "    pm.expect(pm.response.json()).to.be.empty;\r",
+                  "    });"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "followAuthorizationHeader": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"customerName\": \"Allanch\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "orders"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "fiction",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "non-fiction",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

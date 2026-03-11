@@ -1,0 +1,335 @@
+{
+  "info": {
+    "_postman_id": "4464c2c3-c555-451d-a539-20ac02f2b548",
+    "name": "Project FakeStoreAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51457992",
+    "_collection_link": "https://go.postman.co/collection/51457992-4464c2c3-c555-451d-a539-20ac02f2b548?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET Product",
+      "item": [
+        {
+          "name": "Listar produtos",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "response.forEach(product => {\r",
+                  "\r",
+                  "    pm.expect(product).to.have.property('id');\r",
+                  "    pm.expect(product).to.have.property('title');\r",
+                  "    pm.expect(product).to.have.property('price');\r",
+                  "    pm.expect(product).to.have.property('description');\r",
+                  "\r",
+                  "})});\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "response.forEach(product => { \r",
+                  "\r",
+                  "    pm.expect(product.id).to.be.a('number');\r",
+                  "    pm.expect(product.title).to.be.a('string');\r",
+                  "    pm.expect(product.price).to.be.a('number');\r",
+                  "    pm.expect(product.description).to.be.a('string');\r",
+                  "\r",
+                  "})});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Base_URL}}",
+              "host": [
+                "{{Base_URL}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar produto único",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('id');\r",
+                  "    pm.expect(response).to.have.property('title');\r",
+                  "    pm.expect(response).to.have.property('price');\r",
+                  "    pm.expect(response).to.have.property('description');\r",
+                  "\r",
+                  "}); \r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.id).to.be.a('number');\r",
+                  "    pm.expect(response.title).to.be.a('string');\r",
+                  "    pm.expect(response.price).to.be.a('number');\r",
+                  "    pm.expect(response.description).to.be.a('string');\r",
+                  "\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Base_URL}}/1",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "POST Product",
+      "item": [
+        {
+          "name": "Criar um produto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('id');\r",
+                  "    pm.expect(response).to.have.property('title');\r",
+                  "    pm.expect(response).to.have.property('price');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.id).to.be.a('number');\r",
+                  "    pm.expect(response.title).to.be.a('string');\r",
+                  "    pm.expect(response.price).to.be.a('string');\r",
+                  "    \r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"title\": \"PS5\", \r\n   \"price\": \"2999,99\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}",
+              "host": [
+                "{{Base_URL}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PUT Product",
+      "item": [
+        {
+          "name": "Atualizar produto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('id');\r",
+                  "    pm.expect(response).to.have.property('title');\r",
+                  "    pm.expect(response).to.have.property('price');\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.id).to.be.a('number');\r",
+                  "    pm.expect(response.title).to.be.a('string');\r",
+                  "    pm.expect(response.price).to.be.a('string');\r",
+                  "    \r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"title\": \"PS4\", \r\n   \"price\": \"1499,99\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/1",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DEL Product",
+      "item": [
+        {
+          "name": "Deletar produto",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"O tempo de resposta é inferior a 1000 ms.\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+                  "});\r",
+                  "\r",
+                  "\r",
+                  "const response = pm.response.json();\r",
+                  "\r",
+                  "pm.test(\"Possui campos obrigatórios\", function () {\r",
+                  "\r",
+                  "    pm.expect(response).to.have.property('id');\r",
+                  "    pm.expect(response).to.have.property('title');\r",
+                  "    pm.expect(response).to.have.property('price');\r",
+                  "    pm.expect(response).to.have.property('description');\r",
+                  "\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Tipos de dados corretos\", function () {\r",
+                  "\r",
+                  "    pm.expect(response.id).to.be.a('number');\r",
+                  "    pm.expect(response.title).to.be.a('string');\r",
+                  "    pm.expect(response.price).to.be.a('number');\r",
+                  "    pm.expect(response.description).to.be.a('string');\r",
+                  "\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n   \"title\": \"PS5\", \r\n   \"price\": \"2999,99\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/3",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
