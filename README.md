@@ -169,19 +169,19 @@ API pública de e-commerce utilizada para validar:
 
 ### Execução da Collection no Postman
 
-![image alt]([docs/images/postman-runner.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-collection-run.png.png))
+![image alt](docs/images/postman-collection-run.png.png)
 
 ---
 
 ### Exemplo de Request com Testes Automatizados
 
-![image alt]([docs/images/postman-tests.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-test-example.png.png))
+![image alt](docs/images/postman-test-example.png.png)
 
 ---
 
 ### Estrutura da Collection
 
-![image alt]([docs/images/postman-collection.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-collection-structure.png.png))
+![image alt](docs/images/postman-collection-structure.png.png)
 
 ---
 
