@@ -1,43 +1,55 @@
-# 🧪 Projeto de Automação de Testes - QA em Evolução
+# 🧪 Projeto de Automação de Testes | QA Portfolio
 
-Este repositório contém meus estudos e práticas em **Automação de Testes utilizando Cypress**, com foco em qualidade de software, boas práticas e organização profissional de projeto.
+Este repositório contém meus estudos e práticas em **Automação de Testes Web e API**, com foco em qualidade de software, organização de projeto e boas práticas utilizadas no mercado de QA.
 
-O objetivo é consolidar conhecimentos em:
+O objetivo do projeto é consolidar conhecimentos em:
 
-- Testes Funcionais  
-- Testes Regressivos  
-- BDD  
-- Automação Web  
+- Testes Funcionais
+- Testes Regressivos
+- BDD (Behavior Driven Development)
+- Automação Web
+- Testes de API
 
-E evoluir progressivamente para **Testes de API**.
-
----
-
-## 🚀 Tecnologias Utilizadas
-
-- Cypress  
-- Cucumber (BDD) – @badeball/cypress-cucumber-preprocessor  
-- Page Object Model (POM)  
-- Custom Commands  
-- Allure Reports  
-- JavaScript  
-- Git & GitHub  
+Este projeto representa minha evolução prática na área de **Quality Assurance**.
 
 ---
 
-## 🧠 Conceitos Aplicados
+# 🚀 Tecnologias Utilizadas
 
-- ✔ Testes Funcionais  
-- ✔ Testes Negativos  
-- ✔ Fluxos End-to-End (E2E)  
-- ✔ Estrutura baseada em Page Object  
-- ✔ Organização por Features (BDD)  
-- ✔ Suíte reutilizável para Regressão  
-- ✔ Versionamento com Git Flow (branch `testes` → `main`)  
+### Automação Web
+- Cypress
+- Cucumber (BDD) – `@badeball/cypress-cucumber-preprocessor`
+- Page Object Model (POM)
+- Custom Commands
+- JavaScript
+
+### Testes de API
+- Postman
+- Test Scripts (JavaScript)
+
+### Relatórios
+- Allure Reports
+
+### Ferramentas
+- Git
+- GitHub
 
 ---
 
-## 📂 Estrutura do Projeto
+# 🧠 Conceitos Aplicados
+
+✔ Testes Funcionais  
+✔ Testes Negativos  
+✔ Fluxos End-to-End (E2E)  
+✔ Testes de API REST  
+✔ Estrutura baseada em Page Object  
+✔ Organização por Features (BDD)  
+✔ Validação de respostas JSON  
+✔ Versionamento com Git Flow
+
+---
+
+# 📂 Estrutura do Projeto
 
 
 cypress/
@@ -45,25 +57,35 @@ cypress/
 ┃ ┗ features/
 ┃ ┣ SauceDemo/
 ┃ ┗ Amazon/
-┣ support/
-┃ ┣ pages/
-┃ ┣ step_definitions/
-┃ ┗ commands/
-┣ fixtures/
+
+support/
+┣ pages/
+┣ step_definitions/
+┣ commands/
+
+fixtures/
+
+postman/
+┣ collections/
+┃ ┣ books-api-tests.json
+┃ ┣ fakestore-api-tests.json
+┃ ┗ reqres-api-tests.json.json
 
 
 ---
 
 # 📸 Evidências de Execução
 
-## ✅ Execução dos Testes (Cypress)
+## ✅ Execução dos Testes Web (Cypress)
 
 ![image alt](https://github.com/allanch0211/TesteGitHub/blob/51b4fce4313f77e5c31db110958734d17cf49feb/docs/images/cypress-run.png)
+
 ---
 
 ## 📊 Relatório Allure
 
 ![image alt](https://github.com/allanch0211/TesteGitHub/blob/51b4fce4313f77e5c31db110958734d17cf49feb/docs/images/allure-overview.png)
+
 ---
 
 ## 📁 Estrutura do Projeto
@@ -78,58 +100,117 @@ cypress/
 
 ---
 
-## 🔹 Organização Interna
+# 🧪 Automação Web
 
-### Features
-Arquivos `.feature` escritos em Gherkin, representando cenários de negócio.
-
-### Step Definitions
-Implementação dos passos descritos nos cenários BDD.
-
-### Page Object
-Separação de responsabilidades para manter organização, legibilidade e reutilização de código.
-
----
-
-## 🧪 Cenários Automatizados
+## Cenários Automatizados
 
 ### 🛒 SauceDemo
 
-- Login válido  
-- Login inválido  
-- Usuário bloqueado  
-- Adição de produto ao carrinho  
-- Checkout com sucesso  
-- Tentativa de checkout sem preenchimento de campos obrigatórios  
+- Login válido
+- Login inválido
+- Usuário bloqueado
+- Adição de produto ao carrinho
+- Checkout com sucesso
+- Validação de campos obrigatórios
 
 ### 🔍 Amazon
 
-- Pesquisa de produto  
-- Validação de exibição de resultados  
-- Validação de comportamento da busca  
+- Pesquisa de produto
+- Validação de resultados
+- Validação de comportamento da busca
 
 ---
 
-## 🔁 Estratégia de Testes
+# 🌐 Testes de API
+
+Os testes de API foram desenvolvidos utilizando **Postman** para validar endpoints REST e garantir a integridade das respostas da aplicação.
+
+Foram utilizadas APIs públicas para simular cenários reais de testes.
+
+---
+
+## APIs utilizadas
+
+### ReqRes API
+Utilizada para simular operações de usuários e praticar testes de endpoints REST como:
+
+- Listagem de usuários
+- Criação de usuário
+- Atualização de usuário
+- Exclusão de usuário
+
+### Books API
+Utilizada para validar endpoints de consulta de livros, permitindo testar:
+
+- Estrutura de resposta JSON
+- Campos obrigatórios
+- Listagem de dados
+
+### FakeStore API
+API pública de e-commerce utilizada para validar:
+
+- Listagem de produtos
+- Estrutura de resposta da API
+- Tipos de dados retornados
+
+---
+
+## 🧪 Validações aplicadas nos testes de API
+
+✔ Status Code das respostas HTTP  
+✔ Estrutura do JSON retornado pela API  
+✔ Presença de campos obrigatórios  
+✔ Tipos de dados corretos nas propriedades  
+✔ Tempo de resposta da API
+
+---
+
+# 📸 Evidências de Testes de API
+
+### Execução da Collection no Postman
+
+![image alt]([docs/images/postman-runner.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-collection-run.png.png))
+
+---
+
+### Exemplo de Request com Testes Automatizados
+
+![image alt]([docs/images/postman-tests.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-test-example.png.png))
+
+---
+
+### Estrutura da Collection
+
+![image alt]([docs/images/postman-collection.png](https://github.com/allanch0211/qa-automation-cypress-bdd/blob/e7bf1425628749256f79565d21f5d8a9c8935608/docs/images/postman-collection-structure.png.png))
+
+---
+
+
+🔁 Estratégia de Testes
 
 Os testes foram estruturados para:
 
-- Validar regras de negócio (Teste Funcional)  
-- Cobrir cenários positivos e negativos  
-- Servir como base para regressão após alterações no sistema  
-- Garantir robustez evitando validações frágeis (ex: dependência de estoque ou nomes fixos)  
+Validar regras de negócio
+
+Cobrir cenários positivos e negativos
+
+Servir como base para regressão
+
+Garantir robustez evitando validações frágeis
+
+
 
 ---
 
 ## 📊 Relatórios (Allure)
 
-### Gerar relatório:
+### Gerar relatório
 
 
 npx allure generate allure-results --clean
 
 
-### Abrir relatório:
+### Abrir relatório
 
 
 npx allure open
@@ -137,29 +218,31 @@ npx allure open
 
 ---
 
-## ▶️ Como Executar o Projeto
+# ▶️ Como Executar o Projeto
 
-### Clonar o repositório:
+### Clonar repositório
 
 
 git clone <url-do-repositorio>
 
 
-### Instalar dependências:
+### Instalar dependências
 
 
 npm install
 
 
-### Executar testes
+---
 
-#### 🔹 Modo interativo:
+## Executar testes Web
+
+### Modo interativo
 
 
 npx cypress open
 
 
-#### 🔹 Modo headless:
+### Modo headless
 
 
 npx cypress run
@@ -167,28 +250,32 @@ npx cypress run
 
 ---
 
-## 🔄 Versionamento
+# 🔄 Versionamento
 
 Fluxo adotado:
 
-- Desenvolvimento realizado na branch `testes`  
-- Validação local  
-- Pull Request para `main`  
-- Branch `main` sempre estável  
+- Desenvolvimento na branch `testes`
+- Validação local
+- Pull Request para `main`
+- Branch `main` sempre estável
 
 ---
 
-## 📈 Próximos Passos
+# 📈 Próximos Passos
 
-- Implementação de Testes de API  
-- Ampliação da suíte de regressão  
-- Inclusão de cenários exploratórios derivados de testes manuais  
-- Integração futura com CI/CD  
+- Integração dos testes de API com Newman
+- Integração com CI/CD
+- Ampliação da suíte de regressão
+- Inclusão de cenários derivados de testes exploratórios
 
 ---
 
-## 👨‍💻 Sobre
+# 👨‍💻 Sobre
 
-Sou um QA em evolução, focado em construir uma base sólida em qualidade de software, automação e boas práticas de mercado.
+Sou um **QA em evolução**, focado em construir uma base sólida em:
+
+- Qualidade de Software
+- Automação de Testes
+- Boas práticas de mercado
 
 Este repositório representa minha jornada prática de aprendizado e aprimoramento contínuo.
