@@ -112,14 +112,14 @@ Organização do projeto seguindo boas práticas de automação, separando featu
 
 **SauceDemo**
 
-<img src="docs/images/bdd-sauceDemo.feature.png" width="450">
+<img src="docs/images/bdd-sauceDemo.feature.png" style="max-width: 450px;">
 
 </td>
 <td align="center">
 
 **Amazon**
 
-<img src="docs/images/bdd-amazon.feature.png" width="450">
+<img src="docs/images/bdd-amazon.feature.png" style="max-width: 450px;">
 
 </td>
 </tr>
@@ -137,14 +137,14 @@ Cenários escritos em **Gherkin** utilizando Cucumber, representando regras de n
 
 **SauceDemo**
 
-<img src="docs/images/cypress-step-sauceDemo.png" width="450">
+<img src="docs/images/cypress-step-sauceDemo.png" style="max-width: 450px;">
 
 </td>
 <td align="center">
 
 **Amazon**
 
-<img src="docs/images/cypress-step-amazon.png" width="450">
+<img src="docs/images/cypress-step-amazon.png" style="max-width: 450px;">
 
 </td>
 </tr>
@@ -162,14 +162,14 @@ Implementação dos passos descritos nos cenários BDD, conectando os steps escr
 
 **Custom Command (SauceDemo)**
 
-<img src="docs/images/cypress-command-sauceDemo.png" width="450">
+<img src="docs/images/cypress-command-sauceDemo.png" style="max-width: 450px;">
 
 </td>
 <td align="center">
 
 **Page Object Model (Amazon)**
 
-<img src="docs/images/cypress-page-amazon.png" width="450">
+<img src="docs/images/cypress-page-amazon.png" style="max-width: 450px;">
 
 </td>
 </tr>
