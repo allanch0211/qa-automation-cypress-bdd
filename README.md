@@ -125,14 +125,6 @@ User Story → Subtasks → Execução de testes → Automação → Bug Report
 
 ---
 
-### 🧩 Subtasks (quebra de tarefas)
-
-<p align="center">
-  <img src="jira/evidencias/user-stories/subtasks-checkout.png" width="900">
-</p>
-
----
-
 ### 🐞 Bug Report
 
 <p align="center">
