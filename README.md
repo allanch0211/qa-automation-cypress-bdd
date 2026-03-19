@@ -9,6 +9,7 @@ O objetivo do projeto é consolidar conhecimentos em:
 - BDD (Behavior Driven Development)
 - Automação Web
 - Testes de API
+- Gestão de tarefas e bugs com Jira
 
 Este projeto representa minha evolução prática na área de **Quality Assurance**.
 
@@ -33,6 +34,7 @@ Este projeto representa minha evolução prática na área de **Quality Assuranc
 ### Ferramentas
 - Git
 - GitHub
+- Jira 
 
 ---
 
@@ -46,6 +48,10 @@ Este projeto representa minha evolução prática na área de **Quality Assuranc
 ✔ Organização por Features (BDD)  
 ✔ Validação de respostas JSON  
 ✔ Versionamento com Git Flow
+✔ Criação de User Stories
+✔ Criação de Bugs
+✔ Quebra de tarefas (Subtasks)
+✔ Gestão de Sprint e Backlog
 
 ---
 
@@ -68,6 +74,61 @@ postman/
 ┃ ┣ books-api-tests.json
 ┃ ┣ fakestore-api-tests.json
 ┃ ┗ reqres-api-tests.json.json
+
+jira/
+┣ bugs/
+┣ evidencias/
+┣ user-stories/
+
+
+---
+
+🧪 Gestão de Testes com Jira
+
+Neste projeto, utilizei o Jira para simular o fluxo real de trabalho de um QA em ambiente ágil.
+
+📌 Atividades realizadas
+
+Criação de User Stories baseadas nos cenários BDD
+
+Definição de critérios de aceitação
+
+Quebra de tarefas em Subtasks
+
+Criação e documentação de Bugs
+
+Organização de Sprint
+
+Gestão de Backlog
+
+🔄 Fluxo aplicado
+
+User Story → Subtasks → Execução de testes → Automação → Bug Report
+
+📸 Evidências do Jira
+📋 Backlog e Sprint
+
+<p align="center">
+  <img src="jira/evidencias/user-stories/backlog-sprint.png" width="900">
+</p>
+
+🧾 User Story (Checkout)
+
+<p align="center">
+  <img src="jira/evidencias/user-stories/us04-checkout-detalhes.png" width="900">
+</p>
+
+🐞 Bug Report
+
+<p align="center">
+  <img src="jira/evidencias/bugs/bug-checkout-sem-dados.png" width="900">
+</p>
+
+📊 Board da Sprint
+
+<p align="center">
+  <img src="jira/evidencias/board/board-sprint.png" width="900">
+</p>
 
 
 ---
