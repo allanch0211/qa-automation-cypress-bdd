@@ -83,48 +83,65 @@ jira/
 
 ---
 
-🧪 Gestão de Testes com Jira
+
+# 🧪 Gestão de Testes com Jira
 
 Neste projeto, utilizei o Jira para simular o fluxo real de trabalho de um QA em ambiente ágil.
 
-📌 Atividades realizadas
+---
 
-Criação de User Stories baseadas nos cenários BDD
+## 📌 Atividades realizadas
 
-Definição de critérios de aceitação
+- Criação de User Stories baseadas nos cenários BDD  
+- Definição de critérios de aceitação  
+- Quebra de tarefas em Subtasks  
+- Criação e documentação de Bugs  
+- Organização de Sprint  
+- Gestão de Backlog  
 
-Quebra de tarefas em Subtasks
+---
 
-Criação e documentação de Bugs
+## 🔄 Fluxo aplicado
 
-Organização de Sprint
+User Story → Subtasks → Execução de testes → Automação → Bug Report  
 
-Gestão de Backlog
+---
 
-🔄 Fluxo aplicado
+## 📸 Evidências do Jira
 
-User Story → Subtasks → Execução de testes → Automação → Bug Report
-
-📸 Evidências do Jira
-📋 Backlog e Sprint
+### 📋 Backlog e Sprint
 
 <p align="center">
   <img src="jira/evidencias/user-stories/backlog-sprint.png" width="900">
 </p>
 
-🧾 User Story (Checkout)
+---
+
+### 🧾 User Story (Checkout)
 
 <p align="center">
   <img src="jira/evidencias/user-stories/us04-checkout-detalhes.png" width="900">
 </p>
 
-🐞 Bug Report
+---
+
+### 🧩 Subtasks (quebra de tarefas)
+
+<p align="center">
+  <img src="jira/evidencias/user-stories/subtasks-checkout.png" width="900">
+</p>
+
+---
+
+### 🐞 Bug Report
 
 <p align="center">
   <img src="jira/evidencias/bugs/bug-checkout-sem-dados.png" width="900">
 </p>
 
-📊 Board da Sprint
+---
+
+### 📊 Board da Sprint
 
 <p align="center">
   <img src="jira/evidencias/board/board-sprint.png" width="900">
